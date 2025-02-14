@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySenza1 - Test Profumo Perfetto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #bf1e2e;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .qr-code {
+            text-align: center;
+            margin-top: 30px;
+        }
+        button {
+            background-color: #bf1e2e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scopri il tuo Profumo Perfetto!</h1>
+        <p>Rispondi a queste semplici domande e scopri quale fragranza MySenza1 è perfetta per te!</p>
+        
+        <form id="testForm">
+            <div class="question">1️⃣ Come descriveresti il tuo stato d’animo al mattino?</div>
+            <select name="domanda1">
+                <option value="Lavanda e Menta">Sereno e rilassato ☁️</option>
+                <option value="Citri Fructus">Energico e carico ⚡</option>
+                <option value="Risveglio">Pigro, mi serve una spinta ☕</option>
+                <option value="Sapientia">Meditativo e riflessivo 📖</option>
+            </select>
+            
+            <div class="question">2️⃣ Quale sensazione vuoi provare in un ambiente?</div>
+            <select name="domanda2">
+                <option value="Vigna Rossa">Calore e accoglienza 🔥</option>
+                <option value="Eucalipto">Freschezza e pulizia 💨</option>
+                <option value="Vaniglia Nera">Lusso e raffinatezza 🌟</option>
+                <option value="Oltremare">Libertà e leggerezza 🌊</option>
+            </select>
+            
+            <div class="question">3️⃣ Quale di queste frasi ti rappresenta di più?</div>
+            <select name="domanda3">
+                <option value="Vigna Rossa">Amo condividere momenti con le persone 🤝</option>
+                <option value="Oltremare">Mi piacciono gli spazi aperti e la natura 🌳</option>
+                <option value="Lavanda e Menta">Cerco sempre il relax e l’equilibrio 🧘‍♂️</option>
+                <option value="Vaniglia Nera">Amo distinguermi con stile e carattere 🎩</option>
+            </select>
+            
+            <div class="question">4️⃣ Dove trascorri più tempo durante la giornata?</div>
+            <select name="domanda4">
+                <option value="Citri Fructus">Ufficio o spazio di lavoro 🏢</option>
+                <option value="Vigna Rossa">Casa, mi piace creare un ambiente accogliente 🏠</option>
+                <option value="Oltremare">All’aperto, adoro la sensazione di libertà 🌲</option>
+                <option value="Vaniglia Nera">In luoghi eleganti e raffinati 💎</option>
+            </select>
+            
+            <div class="question">5️⃣ Qual è il tuo ideale di benessere?</div>
+            <select name="domanda5">
+                <option value="Citri Fructus">Energia e vitalità 🏃‍♂️</option>
+                <option value="Anima">Relax e pace interiore 🛀</option>
+                <option value="Sapientia">Concentrazione e chiarezza mentale 📚</option>
+                <option value="Vaniglia Nera">Comfort e coccole 🍫</option>
+            </select>
+            
+            <button type="button" onclick="calcolaProfumo()">Scopri il tuo Profumo</button>
+        </form>
+        
+        <h2 id="risultato"></h2>
+    </div>
+    
+    <script>
+        function calcolaProfumo() {
+            let form = document.getElementById("testForm");
+            let risposte = {};
+            
+            for (let i = 0; i < form.elements.length; i++) {
+                let elemento = form.elements[i];
+                if (elemento.tagName === "SELECT") {
+                    let valore = elemento.value;
+                    risposte[valore] = (risposte[valore] || 0) + 1;
+                }
+            }
+            
+            let maxPunteggio = 0;
+            let profumoScelto = "";
+            for (let chiave in risposte) {
+                if (risposte[chiave] > maxPunteggio) {
+                    maxPunteggio = risposte[chiave];
+                    profumoScelto = chiave;
+                }
+            }
+            
+            document.getElementById("risultato").innerHTML = `Il profumo perfetto per te è: <strong>${profumoScelto}</strong>`;
+        }
+    </script>
+    
+    <div class="qr-code">
+        <p>📲 Scansiona il QR Code per accedere al test!</p>
+        <img src="qrcode-placeholder.png" alt="QR Code" width="200">
+    </div>
+</body>
+</html>
+
