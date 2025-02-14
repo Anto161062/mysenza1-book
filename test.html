@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySenza1 - Test Profumo Perfetto</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f9f9f9, #ececec);
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        h1 {
+            color: #1e90ff;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .button {
+            background-color: #1e90ff;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 6px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: block;
+            width: 50%;
+            margin: 30px auto;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #007bff;
+        }
+        select {
+            font-size: 16px;
+            padding: 8px;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scopri il tuo Profumo Perfetto!</h1>
+        <p><strong>Come funziona?</strong> Clicca sulle caselle per rispondere alle domande e scopri la fragranza più adatta a te.</p>
+        
+        <form id="testForm">
+            <div class="question">1️⃣ Come reagisci dopo una giornata intensa?</div>
+            <select name="domanda1">
+                <option value="Lavanda e Menta">Cerco tranquillità e relax 🧘</option>
+                <option value="Citri Fructus">Mi serve energia per scaricare la tensione 🏃</option>
+                <option value="Risveglio">Ascolto musica per ricaricarmi 🎵</option>
+                <option value="Sapientia">Leggo un libro per riflettere 📖</option>
+            </select>
+            
+            <div class="question">2️⃣ Qual è il tuo spazio ideale?</div>
+            <select name="domanda2">
+                <option value="Vigna Rossa">Un salotto accogliente con luci soffuse 🍷</option>
+                <option value="Eucalipto">Un ambiente fresco e minimalista 🏡</option>
+                <option value="Vaniglia Nera">Un luogo elegante e raffinato 🖤</option>
+                <option value="Oltremare">Uno spazio aperto con vista mare 🌊</option>
+            </select>
+            
+            <div class="question">3️⃣ Qual è la tua più grande esigenza emotiva?</div>
+            <select name="domanda3">
+                <option value="Vigna Rossa">Condivisione e relazioni profonde 🤝</option>
+                <option value="Oltremare">Libertà e avventura 🌿</option>
+                <option value="Lavanda e Menta">Equilibrio e serenità 🧘‍♂️</option>
+                <option value="Vaniglia Nera">Eleganza e distinzione ✨</option>
+            </select>
+            
+            <div class="question">4️⃣ Quale esperienza sensoriale preferisci?</div>
+            <select name="domanda4">
+                <option value="Citri Fructus">Il profumo degli agrumi 🍊</option>
+                <option value="Vigna Rossa">Il calore del legno e spezie 🌲</option>
+                <option value="Eucalipto">L’aria fresca e pulita 💨</option>
+                <option value="Vaniglia Nera">La dolcezza della vaniglia 🍫</option>
+            </select>
+            
+            <div class="question">5️⃣ Cosa significa per te il profumo?</div>
+            <select name="domanda5">
+                <option value="Citri Fructus">Energia e vitalità 🏃‍♂️</option>
+                <option value="Anima">Un rifugio emotivo 🛀</option>
+                <option value="Sapientia">Concentrazione e ispirazione 📚</option>
+                <option value="Vaniglia Nera">Un simbolo di stile 💎</option>
+            </select>
+            
+            <button type="button" class="button" onclick="calcolaProfumo()">Scopri il tuo Profumo</button>
+        </form>
+        
+        <h2 id="risultato"></h2>
+    </div>
+    
+    <script>
+        function calcolaProfumo() {
+            let form = document.getElementById("testForm");
+            let risposte = {};
+            
+            for (let i = 0; i < form.elements.length; i++) {
+                let elemento = form.elements[i];
+                if (elemento.tagName === "SELECT") {
+                    let valore = elemento.value;
+                    risposte[valore] = (risposte[valore] || 0) + 1;
+                }
+            }
+            
+            let maxPunteggio = 0;
+            let profumoScelto = "";
+            for (let chiave in risposte) {
+                if (risposte[chiave] > maxPunteggio) {
+                    maxPunteggio = risposte[chiave];
+                    profumoScelto = chiave;
+                }
+            }
+            
+            document.getElementById("risultato").innerHTML = `Il profumo perfetto per te è: <strong>${profumoScelto}</strong>`;
+        }
+    </script>
+</body>
+</html>
