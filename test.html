@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySenza1 - Test Profumo Perfetto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 40px;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #bf1e2e;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scopri il tuo Profumo Perfetto!</h1>
+        <p>Rispondi a queste domande introspettive e scopri quale fragranza MySenza1 si adatta meglio a te.</p>
+        
+        <form id="testForm">
+            <div class="question">1️⃣ Come reagisci quando hai bisogno di rilassarti dopo una giornata intensa?</div>
+            <select name="domanda1">
+                <option value="Lavanda e Menta">Cerco tranquillità, silenzio e un ambiente rilassante 🧘</option>
+                <option value="Citri Fructus">Faccio attività fisica per scaricare la tensione 🏃</option>
+                <option value="Risveglio">Ascolto musica energica o mi attivo con qualcosa di creativo 🎵</option>
+                <option value="Sapientia">Preferisco riflettere in solitudine con un buon libro 📖</option>
+            </select>
+            
+            <div class="question">2️⃣ Se dovessi descrivere il tuo spazio ideale, quale sarebbe?</div>
+            <select name="domanda2">
+                <option value="Vigna Rossa">Un salotto accogliente con luci soffuse e un calice di vino 🍷</option>
+                <option value="Eucalipto">Un ambiente fresco, pulito e minimalista 🏡</option>
+                <option value="Vaniglia Nera">Un luogo elegante con dettagli raffinati 🖤</option>
+                <option value="Oltremare">Uno spazio aperto con vista sul mare 🌊</option>
+            </select>
+            
+            <div class="question">3️⃣ Qual è la tua più grande esigenza emotiva?</div>
+            <select name="domanda3">
+                <option value="Vigna Rossa">Condividere momenti profondi con le persone a cui tengo 🤝</option>
+                <option value="Oltremare">Sentirmi libero e senza vincoli 🌿</option>
+                <option value="Lavanda e Menta">Trovare equilibrio e serenità interiore 🧘‍♂️</option>
+                <option value="Vaniglia Nera">Sentirmi speciale e distinguermi dagli altri ✨</option>
+            </select>
+            
+            <div class="question">4️⃣ Quale esperienza sensoriale ti rilassa di più?</div>
+            <select name="domanda4">
+                <option value="Citri Fructus">Il profumo degli agrumi che risveglia i sensi 🍊</option>
+                <option value="Vigna Rossa">Il calore del legno e delle spezie in un ambiente familiare 🌲</option>
+                <option value="Eucalipto">L’aria fresca che pulisce la mente e libera i pensieri 💨</option>
+                <option value="Vaniglia Nera">La dolcezza avvolgente e sensuale della vaniglia 🍫</option>
+            </select>
+            
+            <div class="question">5️⃣ Cosa rappresenta per te il profumo?</div>
+            <select name="domanda5">
+                <option value="Citri Fructus">Una spinta di energia e vitalità 🏃‍♂️</option>
+                <option value="Anima">Un rifugio emotivo che mi fa sentire al sicuro 🛀</option>
+                <option value="Sapientia">Uno stimolo alla concentrazione e alla riflessione 📚</option>
+                <option value="Vaniglia Nera">Un accessorio che definisce la mia personalità 💎</option>
+            </select>
+            
+            <button type="button" class="button" onclick="calcolaProfumo()">Scopri il tuo Profumo</button>
+        </form>
+        
+        <h2 id="risultato"></h2>
+    </div>
+    
+    <script>
+        function calcolaProfumo() {
+            let form = document.getElementById("testForm");
+            let risposte = {};
+            
+            for (let i = 0; i < form.elements.length; i++) {
+                let elemento = form.elements[i];
+                if (elemento.tagName === "SELECT") {
+                    let valore = elemento.value;
+                    risposte[valore] = (risposte[valore] || 0) + 1;
+                }
+            }
+            
+            let maxPunteggio = 0;
+            let profumoScelto = "";
+            for (let chiave in risposte) {
+                if (risposte[chiave] > maxPunteggio) {
+                    maxPunteggio = risposte[chiave];
+                    profumoScelto = chiave;
+                }
+            }
+            
+            document.getElementById("risultato").innerHTML = `Il profumo perfetto per te è: <strong>${profumoScelto}</strong>`;
+        }
+    </script>
+</body>
+</html>
+
